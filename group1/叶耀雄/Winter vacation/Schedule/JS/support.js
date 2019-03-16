@@ -1,13 +1,11 @@
 
-function removeClass(Weeks,Day,Class){
-    if(s2 >= Weeks){
+function removeClass(preWeeks,lateWeeks,Day,Class){
+    if(s2 <= preWeeks || s2 >= lateWeeks){
         let bridge = dayNum[Day].getElementsByTagName("ul");
         let classNum = bridge[0].getElementsByTagName("li");
         let flag = classNum[Class].getElementsByTagName('a');
-        let one = flag[0];
-        one.innerHTML = " ";
-        let cd = classNum[Class].getElementsByTagName("ul");
-        cd[0].style.display = "none";
+        flag[0].innerHTML = " ";
+        flag[1].innerHTML = " ";
     }
 }
 /* 遇到的问题：getEementsByTagName()获取到的子元素，包含子元素中的含有该标签的元素
@@ -16,24 +14,30 @@ function removeClass(Weeks,Day,Class){
             这样用户想要的第 n 节课，在js中写成 2*(n-1) 节课就好
 */
 
-removeClass(11,0,0);                                                 /* 从11周开始周1第1节课清除 */
-removeClass(11,0,2);
-removeClass(11,0,6);
-removeClass(14,0,8);
+function ReMove(){
+    /* 从11周开始周1第2节课清除 */
+    removeClass(0,11,0,2);
+    removeClass(2,11,0,6);
+    removeClass(3,14,0,8);
 
-removeClass(16,1,0);
-removeClass(5,1,2);
-removeClass(15,1,8);
-removeClass(14,1,12);
+    removeClass(3,16,1,0);
+    removeClass(2,5,1,2);
+    removeClass(0,11,1,6);
+    removeClass(0,15,1,8);
+    removeClass(8,14,1,12);
 
-removeClass(11,2,0);
-removeClass(11,2,2);
-removeClass(11,2,6);
-removeClass(14,2,12);
+    removeClass(0,11,2,0);
+    removeClass(0,11,2,2);
+    removeClass(2,11,2,6);
+    removeClass(3,14,2,12);
 
-removeClass(15,3,0);
-removeClass(5,3,2);
-removeClass(11,3,12);
+    removeClass(0,15,3,0);
+    removeClass(2,5,3,2);
+    removeClass(6,11,3,12);
 
-removeClass(17,4,6);
-removeClass(5,4,12);
+    removeClass(0,11,4,2);
+    removeClass(0,17,4,6);
+    removeClass(2,5,4,12);
+    removeClass(0,11,4,0); 
+}
+ReMove();
